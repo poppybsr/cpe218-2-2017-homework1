@@ -8,18 +8,19 @@ import javax.swing.JTree;
 public class Homework1{
     public static Node tree;
     public static Stack<Character> stack = new Stack<Character>();
+    public static int i;
     public static void main(String[] args) {
-		// Begin of arguments input sample
 		String example = "251-*32*+";
-                 for(int i = 0; i < example.length(); i++)
+                
+                while( i<example.length())
                  {
                      stack.push(example.charAt(i));
-                     //System.out.print(EX);
+                     i++;
                  }
                  tree = new Node(stack.pop());
                  infix(tree);
                  inorder(tree);
-                 System.out.print("="+calculator(tree));
+                 System.out.println(" = "+calculator(tree));
 		// End of arguments input sample
 		
 		// TODO: Implement your project here
@@ -44,51 +45,18 @@ public class Homework1{
            }
 	
        }
-    public static boolean isOperator(Node op){
-                switch(op.value){
-                        case '+':
-                                return true;
-                        case '-':
-                                return true;
-                        case '/':
-                                return true;
-                        case '*':
-                                return true;
-                        case '^':
-                                return true;
-                        default:
-                                return false;
-                }
-        }
     public static void inorder(Node n) {
             if(n!=null)
-        {   //System.out.print("(");
+        {   if(n.left!=null) System.out.print("(");
             inorder(n.left);
             System.out.print(n.value);
             inorder(n.right);  
-            //System.out.print(")");
+            if(n.right!=null) System.out.print(")");
         } 
         }
         
         public static int calculator(Node n){
-       /* if (n.left == null && n.right == null)
-            return 0;
-        else
-        {
-            int result = 0;
-            int left = calculator(n.left);
-            int right = calculator(n.right);
- 
-            switch (n.value)
-            {
-            case '+' : result = left + right; break;
-            case '-' : result = left - right; break;
-            case '*' : result = left * right; break;
-            case '/' : result = left / right; break;
-            default : Integer.parseInt(n.value.toString());
-            }
-            return result;
-        }*/
+
             switch(n.value){
                 case'+':
                     return calculator(n.left)+calculator(n.right);
@@ -102,8 +70,8 @@ public class Homework1{
                     return Integer.parseInt(n.value.toString());
                     
             }
-        
-        }
+            
+            }
     }
 
 
